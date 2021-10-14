@@ -1,0 +1,72 @@
+Reinforcement learning is learning what to do to maximize a numerical reward. A discovery process where the learner is not told what action to take, but instead must discover which action yields the most reward by trying them. In the most interesting cases actions might affect not only the immediate reward but also future situations and all the subsequent rewards. These two characteristics -- Trial-and-error search and delayed reward -- are the two most important distinguishing features of reinforcement learning.
+
+Reinforcement learning differs from \textit{supervised learning} since training is not based on an external dataset of labeled examples, where each situation (observation) is labelled with the correct action to perform (often identify a category). RL, although one might erroneously think the opposite, is also different from \textit{unsupervised learning}. The main objective for unsupervised learning is to find hidden structures in an unlabeled dataset, whereas RL's main objective is to maximize a reward signal. 
+
+\section{Finite Markov Decision process (MDPs)}
+
+Finite Markov decision processes are a class of problems that formalize subsequent decision making, where not only the influence of the action is exerted on immediate reward but also on those in the future. MDP's are suited for RL since these are models that frame the process of learning through repeated interaction between an agent (decision maker), and an environment (ruled by fixed state transition function).
+
+More specifically an agent is asked to take an action \( a_t \in \mathcal{A} \) at every time step \( t = 0,1,...\, \). To do so the agent is provided with an observation of the current environment's state \( s_t \in \mathcal{S} \) and a reward \( r_t \in R \) from the previously performed action. Afterwards the environment update it's state following a transition distribution \( \mathcal{T}(s_{t+1}|a_t,s_t) \) and a numerical reward \( r_{t+1} \in \mathcal{R} \subset \mathbb{R} \). This process is reproduced every subsequent timestep, this concatenation of interaction is a MDP.
+
+\paragraph{Objective and Rewads:} The main objective of RL is to maximize the total number of rewars it receive. This reward \( r_t \) is passed from the environment to the agent at every timestep as a consequence of his actions. In the case of the Gather and Trade the reward is \( r_{i,t} = u_i(x_{i,t},l_{i,t})  - u_i(x_{i,t-1},l_{i,t-1}) \). 
+
+Since the agents wants to maximise the total upcoming reward we can write this value simply as the sum of all the future rewards.
+
+\begin{equation*}
+U_t \doteq r_{t+1} + r_{t+2} + ... + r_{H},
+\end{equation*}
+
+Where \( H \) is the total lenght of the episode, and at the timestep \( t = H \) the episode ends. This state is called the terminal state and is a particular state because regardless of the final condition of the agent it reset the environment to the initial condition and restart completely the episode.
+Another specification for the total reward can implement the concept of discounting, which is more appropriate in the case of economical simulations, thus within the experiments the agent has to maximise his future discounted utility:
+
+
+\textcolor{red}{figure 3.1 from \cite{sutton2018reinforcement}}
+
+\begin{equation}
+U_t \doteq r_{t+1} + \gamma r_{t+2} + \gamma^2 r_{t+3} +... + \gamma^{H-t-1}r_{H},
+\end{equation}
+
+the discount rate \( \gamma \in [0,1] \) determines the value that the agent assign to the future reward, a reward recived at \( k \) timesteps in the future is only valued \(\gamma^{k-1} \) times what it would be valued today. When the value of \( \gamma \) approaches 0 the agent is more "myopic" and puts most of his interest in immediate rewards, while if it approaches 1 the interest is more projected in the future due to the stronger impact of furure rewards.
+
+
+\paragraph{Value functions: } \textcolor{red}{this one might be a subparagraph} One of the most important elements of RL is the value function. The estimation of this function is one of the crucial points of RL, in fact it tries to quantify the expected return of the rewards it expects to receive. Furthermore the expected reward depends on the action that the agent decides to take, thus the value function are defined in terms of policies, which are acting behaviors.
+Formally a policy is 
+
+If the agent is following policy \( \pi \) at time \( t \), then \( \pi(a|s) \) is the probability that the agent take the action \( a_t = a \) given the state \( s_t = s \). The aim of RL is to change the policy based on experience across episodes to find an optimal behavior.
+
+Now we can write a value funciton for a state \( s \) unther the policy \( \pi \). This function is the expected return when the inital state is \( s \) and the policy \( \pi \) is followed from thereon.
+
+\begin{equation}
+v_\pi(s) \doteq \mathbb{E} _\pi \left[ U_t | s_t = s \right] \, =\,  \mathbb{E} _\pi \left[\left.\sum_{k = 0}^{H}\gamma^k r_{t+k+1}  \right| s_t = s \right], \quad \text{for all}\, s \in \mathcal{S} 
+\label{eq:statevalue_function}
+\end{equation}
+
+\(  v_\pi(s)\) is called the state-value function for policy \( \pi \)
+Following from this equation is possible to define the value of thaking an action \( a \) in the state \( s \) following the policy \( \pi \):
+
+\begin{equation}
+    q_\pi(s,a) \doteq \mathbb{E} _\pi \left[ U_t | s_t = s, a_t = a \right] \, =\,  \mathbb{E} _\pi \left[\left.\sum_{k = 0}^{H}\gamma^k r_{t+k+1}  \right| s_t = s, a_t = a \right],
+    \label{eq:actionvalue_function}
+\end{equation}
+    
+and \( q_\pi(s,a) \) is called the action-value function for policy \( \pi \). The important concept here is that the value functions in \ref{eq:statevalue_function} and \ref{eq:actionvalue_function} can be estimated from experience. There are multiple ways to evaluate these functions, we can divide these ways in two main groups, tabulat solution methods and approximate solution methids. For the former we have Montecarlo methods \textcolor{red}{qui metti delle referenze cosi fai una bibliografia grossa ;)}, Dynamic programming, Temporal-difference learing, n-step bootsrap and others. While for the latter we have -... . . .. . . . and policy gradient methods. 
+
+For the purpose of this thesis we are going to foucs only on policy gradient methods and a particular set of optimization policy called proximal policy optimization.
+
+\section{Approximate solution Methods}
+
+The approximate solution methods are a set of strategies tought for those problems, such as ours, where the set of possible states is enormous. It is very likely that every state encountered in a simulation will never have been encountered before. Thus to make sensate decisions there is the need to be able to generalize from previous state that are, to some extent, similar. This is accomplished  
+
+
+
+\subsection{Policy gradient Methods}  
+\textcolor{red}{Chapter 13 RL: an into}
+
+
+Policy gradient methods are a set of parameterized policy that can select actions without the use of a value function
+
+
+\subsection{Proximal Policy Optimization Algorithms}
+
+
+Proximal policy optimization algorithms (PPOs) are a family of policy gradient methods for reinforcement learning, which alternate between sampling data through interaction with the environment and optimizing a "surrogate" objective function using stochastic gradient ascent.

@@ -1,0 +1,138 @@
+\documentclass[12pt,a4paper,openright,twoside]{report}
+
+\usepackage[english]{babel}
+\usepackage{indentfirst}
+\usepackage{xcolor}
+\usepackage{eucal}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{comment}
+\usepackage{newlfont}
+\usepackage[parfill]{parskip}
+\usepackage{listings} 
+\usepackage{hyperref}
+\usepackage{csquotes}
+
+% Biblatex - bibliograpy 
+\usepackage{biblatex}
+\addbibresource{bibliography.bib}
+
+% appendix 
+\usepackage[toc,page]{appendix} 
+
+% caption management
+\usepackage[margin=1cm]{caption}
+
+% some page formating
+\oddsidemargin=30pt \evensidemargin=20pt
+\numberwithin{equation}{section} 
+\linespread{1.3} 
+
+% fancyhdr - Page format
+\usepackage{fancyhdr}
+\pagestyle{fancy}\addtolength{\headwidth}{20pt}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection \ #1}{}}
+\rhead[\fancyplain{}{\bfseries\leftmark}]{\fancyplain{}{\bfseries\thepage}}
+\cfoot{}
+
+% Tikz - Graph and diagrams
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+% ragged2e - Justifying text
+\usepackage{ragged2e}
+\justifying
+
+
+\begin{document} 
+\input{frontespizio_new.tex}
+
+
+%------------------------------------------------------------------------------------
+% TITLE PAGE
+%------------------------------------------------------------------------------------
+\begin{titlepage} 
+\thispagestyle{empty}                   %elimina il numero della pagina
+\topmargin=6.5cm                        %imposta il margina superiore a 6.5cm
+\raggedleft                             %incolonna la scrittura a destra
+\large                                  %aumenta la grandezza del carattere
+\em                                     %emfatizza (corsivo) il carattere
+Questa è la \textsc{Dedica}:\\
+ognuno può scrivere quello che vuole, \\
+anche nulla \ldots                   
+\newpage                               
+%\clearpage{\pagestyle{empty}\cleardoublepage}%non numera l'ultima pagina sinistra
+\end{titlepage}
+%------------------------------------------------------------------------------------
+
+
+
+
+%------------------------------------------------------------------------------------
+% INTRO - TABLE OF CONTENTS
+%------------------------------------------------------------------------------------
+\pagenumbering{roman}                  
+\chapter*{Introduction}             
+\addcontentsline{toc}{chapter}{Introduction}
+
+
+hi this is my intro
+
+
+\clearpage{\pagestyle{empty}\cleardoublepage}
+\tableofcontents      
+\clearpage{\pagestyle{empty}\cleardoublepage}
+\listoffigures                         
+\clearpage{\pagestyle{empty}\cleardoublepage}
+\listoftables  
+\clearpage{\pagestyle{empty}\cleardoublepage}
+
+%------------------------------------------------------------------------------------
+
+
+
+%------------------------------------------------------------------------------------
+% CHAPTER 1
+%------------------------------------------------------------------------------------
+\chapter{What is Foundation}
+\pagenumbering{arabic}
+\input{Foundation.tex}
+%------------------------------------------------------------------------------------
+
+
+
+%------------------------------------------------------------------------------------
+% CHAPTER 2
+%------------------------------------------------------------------------------------
+\chapter{Reinforcement Learning}
+\input{Reinforcment_learning.tex}
+%------------------------------------------------------------------------------------
+
+
+
+
+%------------------------------------------------------------------------------------
+% CHAPTER 3
+%------------------------------------------------------------------------------------
+\chapter{Optimal taxation}
+\input{optimal_taxation.tex}
+%------------------------------------------------------------------------------------
+
+
+
+
+
+\renewcommand{\chaptermark}[1]{\markright{\thechapter \ #1}{}}
+\lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
+\appendix   
+\chapter{Tabelle e cose}  
+\input{appendices.tex}
+\rhead[\fancyplain{}{\bfseries \thechapter \:Tabelle e cose}]
+{\fancyplain{}{\bfseries\thepage}}
+
+
+\printbibliography
+
+
+\end{document}

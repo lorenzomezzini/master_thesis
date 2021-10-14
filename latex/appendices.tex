@@ -1,0 +1,63 @@
+
+
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{lll}
+    \hline
+    Parameter                    &  & Value \\ \hline
+    Episode Lenght               & \( H \) & 1000  \\
+    World height                 &  & 25    \\
+    World width                  &  & 25    \\
+    Resources respawn prob.      &  & 0.01  \\
+    Inital Coin endowment        &  & 0     \\
+    Iso-elastic utility exponent &  & 0.23  \\
+    Move labor                   &  & 0.21  \\
+    Gather labor                 &  & 0.21  \\
+    Trade labor                  &  & 0.05  \\
+    Build labor                  &  & 2.1   \\
+    Base build payout            &  & 10    \\
+    Max skill multiplier         &  & 3     \\
+    Max bid/ask price            &  & 10    \\
+    Max bid/ask order duration   &  & 50    \\
+    Max simultaneous open orders &  & 5     \\
+    Tax period duration          &  & 100   \\
+    Min bracket rate             &  & 0\%   \\
+    Max bracket rate             &  & 100\% \\ \hline
+    \end{tabular}
+    \caption{\label{tab:hyperparameter_env}Your caption.}
+\end{table}
+
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{lll}
+    \hline
+    Variable Name                                 & Dimension   & Bounds                      \\ \hline
+    world Map                                     & (7, 11, 11) & \{0;1\}                     \\ 
+    world-idx\_map                                & (2, 11, 11) & \{0,1,...,5\}               \\ 
+    world-loc-row                                 & (1,)        & {[}0,1{]}                   \\ 
+    world-loc-col                                 & (1,)        & {[}0,1{]}                   \\ 
+    world-inventory-Coin                          & (1,)        & {[}0,inf)                   \\ 
+    world-inventory-Stone                         & (1,)        &                             \\ 
+    world-inventory-Wood                          & (1,)        &                             \\ 
+    time                                          & (1, 1)      &                             \\ 
+    Build-build\_payment                          & (1,)        &                             \\ 
+    Build-build\_skill                            & (1,)        &                             \\ 
+    ContinuousDoubleAuction-market\_rate-Stone    & (1,)        &                             \\ 
+    ContinuousDoubleAuction-price\_history-Stone  & (11,)       &                             \\ 
+    ContinuousDoubleAuction-available\_asks-Stone & (11,)       &                             \\ 
+    ContinuousDoubleAuction-available\_bids-Stone & (11,)       &                             \\ 
+    ContinuousDoubleAuction-my\_asks-Stone        & (11,)       &                             \\ 
+    ContinuousDoubleAuction-my\_bids-Stone        & (11,)       &                             \\ 
+    ContinuousDoubleAuction-market\_rate-Wood     & (1,)        &                             \\ 
+    ContinuousDoubleAuction-price\_history-Wood   & (11,)       &                             \\ 
+    ContinuousDoubleAuction-available\_asks-Wood  & (11,)       &                             \\ 
+    ContinuousDoubleAuction-available\_bids-Wood  & (11,)       &                             \\ 
+    ContinuousDoubleAuction-my\_asks-Wood         & (11,)       &                             \\ 
+    ContinuousDoubleAuction-my\_bids-Wood         & (11,)       &                             \\ 
+    Gather-bonus\_gather\_prob                    & (1,)        &                             \\ 
+    action\_mask                                  & (50,)       &                             \\ \hline
+    \end{tabular}
+    \caption{\label{tab:full_obs} Full observation space.}
+\end{table}
