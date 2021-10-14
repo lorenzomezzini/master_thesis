@@ -41,5 +41,5 @@ def run(load_dir=None):
 
 
 if __name__ == '__main__':
-    ray.init(address='auto',_redis_password='5241590000000000')
+    ray.init()
     run()
