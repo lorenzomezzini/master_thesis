@@ -13,7 +13,7 @@ from rl.models.tf.fcnet_lstm import RNNModel
 
 def get_conf():
     return {
-        **get_base_ppo_conf(num_workers=8),
+        **get_base_ppo_conf(num_workers=6),
         'env_config': ENV_PHASE_ONE,
         "multiagent": {
             "policies_to_train": ["learned"],

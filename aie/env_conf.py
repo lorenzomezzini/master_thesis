@@ -70,3 +70,16 @@ ENV_ITALY = {
         }),
     ],
 }
+
+ENV_US = {
+    'components': [
+        ('Build', {'skill_dist': "pareto", 'payment_max_skill_multiplier': 3}),
+        ('ContinuousDoubleAuction', {'max_num_orders': 5}),
+        ('Gather', {}),
+        ('PeriodicBracketTax', {
+            'bracket_spacing': "us-federal",
+            'period': 100,
+            'tax_model': 'us-federal-single-filer-2018-scaled',
+        }),
+    ],
+}
