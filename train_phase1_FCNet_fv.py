@@ -4,9 +4,9 @@ import ray
 from ray.rllib.agents import ppo
 from ray.rllib.models import ModelCatalog
 
-from aie.env_conf import ENV_US
+from aie.env_conf import  ENV_PHASE_ONE
 
-from rl.conf import get_base_ppo_conf
+from rl.conf import get_fv_ppo_conf
 from rl.models.tf.fcnet import FCNet
 
 
@@ -14,14 +14,13 @@ def get_conf():
     lr = 1e-4
 
     return {
-        **get_base_ppo_conf(num_workers=3),
-
+        **get_fv_ppo_conf(num_workers=3),
+        'env_config': ENV_PHASE_ONE,
         "lr_schedule": [
             [0, lr],
             [10_000_000, lr],
             [15_000_000, 0],
         ],
-        'env_config': ENV_US,
     }
 
 
@@ -42,5 +41,5 @@ def run(load_dir=None):
 
 
 if __name__ == '__main__':
-    ray.init() 
-    run("/home/lorenzo/ray_results/LSTM_48M/checkpoint_3785/checkpoint-3785") #need to add dir to the phase 1 results
+    ray.init()
+    run()
