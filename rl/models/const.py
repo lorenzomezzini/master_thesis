@@ -16,8 +16,6 @@ KEYS_2D = [
     'action_mask',
 ]
 KEYS_1D = [
-    'world-loc-row',
-    'world-loc-col',
     'world-inventory-Coin',
     'world-inventory-Stone',
     'world-inventory-Wood',

@@ -55,8 +55,9 @@ class FCNet(TFModelV2):
             inputs=[inputs],
             outputs=[logits_out, value_out],
         )
+        print(self.base_model.summary())
         self.register_variables(self.base_model.variables)
-
+        
         self._value_out = None
 
     @override(ModelV2)

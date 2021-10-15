@@ -7,7 +7,7 @@ from ray.rllib.models import ModelCatalog
 from aie.env_conf import  ENV_PHASE_ONE
 
 from rl.conf import get_fv_ppo_conf
-from rl.models.tf.fcnet import FCNet
+from rl.models.tf.conv_fcnet_fv import ConvFCNet
 
 
 def get_conf():
@@ -25,7 +25,7 @@ def get_conf():
 
 
 def run(load_dir=None):
-    ModelCatalog.register_custom_model("my_model", FCNet)
+    ModelCatalog.register_custom_model("my_model", ConvFCNet)
     trainer = ppo.PPOTrainer(config=get_conf())
 
     if load_dir != None:
