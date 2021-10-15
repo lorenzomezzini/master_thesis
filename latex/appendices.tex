@@ -61,3 +61,20 @@
     \end{tabular}
     \caption{\label{tab:full_obs} Full observation space.}
 \end{table}
+
+
+
+\begin{table}[]
+    \begin{tabular}{llll}
+	Model: "model"            &                    &          &                            \\ \hline
+	Layer (type)              & Output Shape       & Param \# & Connected to               \\ \hline
+	observations (InputLayer) & {[}(None, 1260){]} & 0        &                            \\ \hline
+	encoder (Encoder)         & (None, 256)        & 389632   & observations{[}0{]}{[}0{]} \\ \hline
+	fc\_out (Dense)           & (None, 50)         & 12850    & encoder{[}0{]}{[}0{]}      \\ \hline
+	value\_out (Dense)        & (None, 1)          & 257      & encoder{[}0{]}{[}0{]}      \\ \hline
+	Total params: 402,739     &                    &          &                            \\
+	Trainable params: 402,739 &                    &          &                            \\
+	Non-trainable params: 0   &                    &          &                            \\ \hline
+    \end{tabular}
+    \caption{\label{tab:full_obs} Full observation space.}
+\end{table}
