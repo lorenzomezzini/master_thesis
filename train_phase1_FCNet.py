@@ -16,11 +16,6 @@ def get_conf():
     return {
         **get_base_ppo_conf(num_workers=3),
         'env_config': ENV_PHASE_ONE,
-        "lr_schedule": [
-            [0, lr],
-            [10_000_000, lr],
-            [45_000_000, 0],
-        ],
     }
 
 
