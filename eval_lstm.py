@@ -17,7 +17,6 @@ ModelCatalog.register_custom_model("my_model", RNNModel)
 # %%
 trainer = ppo.PPOTrainer(config={
     **BASE_PPO_CONF,
-    #"num_gpus": 1,
     "num_workers": 0,
 })
 

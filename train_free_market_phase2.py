@@ -15,8 +15,8 @@ def get_conf():
         **get_base_ppo_conf(num_workers=2),
         "lr_schedule": [
             [0, lr],
-            [10_000_000, lr],
-            [15_000_000, 0],
+            [50_000_000, lr],
+            [100_000_000, 0],
         ],
     }
 
