@@ -11,16 +11,9 @@ from rl.models.tf.fcnet import FCNet
 
 
 def get_conf():
-    lr = 1e-4
-
     return {
-        **get_base_ppo_conf(num_workers=3),
+        **get_base_ppo_conf(num_workers=2),
         'env_config': ENV_PHASE_ONE,
-        "lr_schedule": [
-            [0, lr],
-            [10_000_000, lr],
-            [15_000_000, 0],
-        ],
     }
 
 
