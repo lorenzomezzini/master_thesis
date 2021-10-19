@@ -13,7 +13,7 @@ from rl.models.tf.fcnet_lstm import RNNModel
 
 def get_conf():
     return {
-        **get_base_ppo_conf(num_workers=2),
+        **get_base_ppo_conf(num_workers=8),
         'env_config': ENV_PHASE_ONE,
         "multiagent": {
             "policies_to_train": ["learned"],
@@ -29,10 +29,14 @@ def get_conf():
         },
     }
 
-def run():
-    ModelCatalog.register_custom_model("my_model", RNNModel)
 
+def run(load_dir=None):
+    ModelCatalog.register_custom_model("my_model", RNNModel)
     trainer = ppo.PPOTrainer(config=get_conf())
+
+    if load_dir != None:
+        # should add an assert
+        trainer.restore(load_dir)
 
     t = time.monotonic()
     while True:
@@ -44,4 +48,4 @@ def run():
 
 if __name__ == '__main__':
     ray.init()
-    run()
+    run('/home/lorenzo/ray_results/PPO_AIEEnv_2021-10-18_15-37-23s19v37k7/checkpoint_4044/checkpoint-4044')
