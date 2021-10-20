@@ -1,5 +1,4 @@
 import time
-from pathlib import Path
 
 import ray
 from ray.rllib.agents import ppo
@@ -14,7 +13,7 @@ from rl.models.tf.fcnet_lstm import RNNModel
 def get_conf():
     return {
         **get_base_ppo_conf(num_workers=8),
-        'env_config': ENV_PHASE_ONE,
+        "env_config" : ENV_PHASE_ONE,
         "multiagent": {
             "policies_to_train": ["learned"],
             "policies": {
@@ -48,4 +47,4 @@ def run(load_dir=None):
 
 if __name__ == '__main__':
     ray.init()
-    run('/home/lorenzo/ray_results/PPO_AIEEnv_2021-10-18_15-37-23s19v37k7/checkpoint_4044/checkpoint-4044')
+    run('/home/lorenzo/ray_results/LSTM_80M/checkpoint_6315/checkpoint-6315')
