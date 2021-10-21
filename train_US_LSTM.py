@@ -1,20 +1,17 @@
 import time
-import sys
-sys.path.insert(1, '/home/lorenzo/Desktop/master_thesis')
 
 import ray
 from ray.rllib.agents import ppo
 from ray.rllib.models import ModelCatalog
 
 from aie.aie_env import OBS_SPACE_AGENT, ACT_SPACE_AGENT
+from aie.env_conf import  ENV_US
 from rl.conf import get_base_ppo_conf
 from rl.models.tf.fcnet_lstm import RNNModel
 
-
 def get_conf():
     return {
-        
-        **get_base_ppo_conf(num_workers=2),
+        **get_base_ppo_conf(num_workers=4),
         "multiagent": {
             "policies_to_train": ["learned"],
             "policies": {
@@ -27,6 +24,8 @@ def get_conf():
             },
             "policy_mapping_fn": lambda x: 'learned',
         },
+        "env_config" : ENV_US,
+
     }
 
 
@@ -48,4 +47,4 @@ def run(load_dir=None):
 
 if __name__ == '__main__':
     ray.init()
-    run()
+    run('/home/lorenzo/ray_results/LSTM_80M/checkpoint_6315/checkpoint-6315')
