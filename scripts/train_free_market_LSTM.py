@@ -5,15 +5,13 @@ from ray.rllib.agents import ppo
 from ray.rllib.models import ModelCatalog
 
 from aie.aie_env import OBS_SPACE_AGENT, ACT_SPACE_AGENT
-from aie.env_conf import ENV_PHASE_ONE
 from rl.conf import get_base_ppo_conf
 from rl.models.tf.fcnet_lstm import RNNModel
 
 
 def get_conf():
     return {
-        **get_base_ppo_conf(num_workers=2),
-        "env_config" : ENV_PHASE_ONE,
+        **get_base_ppo_conf(num_workers=8),
         "multiagent": {
             "policies_to_train": ["learned"],
             "policies": {
@@ -29,12 +27,11 @@ def get_conf():
     }
 
 
-def run(load_dir=None):
+def run(load_dir):
     ModelCatalog.register_custom_model("my_model", RNNModel)
     trainer = ppo.PPOTrainer(config=get_conf())
 
-    if load_dir != None:
-        # should add an assert
+    if load_dir:
         trainer.restore(load_dir)
 
     t = time.monotonic()
@@ -47,4 +44,4 @@ def run(load_dir=None):
 
 if __name__ == '__main__':
     ray.init()
-    run('/home/lorenzo/ray_results/LSTM_80M/checkpoint_6315/checkpoint-6315')
+    run()
