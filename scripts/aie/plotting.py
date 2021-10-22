@@ -10,7 +10,7 @@ import numpy as np
 from ai_economist.foundation import landmarks, resources
 
 
-def plot_map(maps, locs, ax=None, cmap_order=None):
+def plot_map(maps, locs, ax=None, cmap_order=None, t=-1):
     world_size = np.array(maps.get("Wood")).shape
     max_health = {"Wood": 1, "Stone": 1, "House": 1}
     n_agents = len(locs)
@@ -19,7 +19,10 @@ def plot_map(maps, locs, ax=None, cmap_order=None):
         _, ax = plt.subplots(1, 1, figsize=(10, 10))
     else:
         ax.cla()
+
     tmp = np.zeros((3, world_size[0], world_size[1]))
+    #tmp = np.ones((3, world_size[0], world_size[1]))
+
     cmap = plt.get_cmap("jet", n_agents)
 
     if cmap_order is None:
@@ -63,6 +66,13 @@ def plot_map(maps, locs, ax=None, cmap_order=None):
         map_ = col[:, None, None] * agent[None]
         tmp += map_
 
+    for i in range(25):
+        for j in range(25):
+            if tmp[0][i][j] == 0 and tmp[1][i][j] == 0 and tmp[2][i][j] == 0: 
+                tmp[0][i][j] = 0
+                tmp[1][i][j] = 0.73
+                tmp[2][i][j] = 0.17
+
     tmp *= 0.7
     tmp += 0.3
 
@@ -73,6 +83,7 @@ def plot_map(maps, locs, ax=None, cmap_order=None):
 
     bbox = ax.get_window_extent()
 
+
     for i in range(n_agents):
         r, c = locs[cmap_order[i]]
         col = np.array(cmap(i)[:3])
@@ -82,11 +93,12 @@ def plot_map(maps, locs, ax=None, cmap_order=None):
     ax.set_xticks([])
     ax.set_yticks([])
 
+    plt.savefig('/home/lorenzo/Desktop/master_thesis/scripts/eval/test/{}'.format(t))
 
 def plot_env_state(env, ax=None, remap_key=None):
     maps = env.world.maps
     locs = [agent.loc for agent in env.world.agents]
-
+    t = env.timestep
     if remap_key is None:
         cmap_order = None
     else:
@@ -95,7 +107,7 @@ def plot_env_state(env, ax=None, remap_key=None):
             [agent.state[remap_key] for agent in env.world.agents]
         ).tolist()
 
-    plot_map(maps, locs, ax, cmap_order)
+    plot_map(maps, locs, ax, cmap_order, t)
 
 
 def plot_log_state(dense_log, t, ax=None, remap_key=None):
