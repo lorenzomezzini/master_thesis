@@ -64,6 +64,20 @@ ENV_US = {
     ],
 }
 
+ENV_COMMUNISM = {
+    'components': [
+        ('Build', {'skill_dist': "pareto", 'payment_max_skill_multiplier': 3}),
+        ('ContinuousDoubleAuction', {'max_num_orders': 5}),
+        ('Gather', {}),
+        ('PeriodicBracketTax', {
+            'bracket_spacing': "us-federal",
+            'period': 100,
+            'tax_model': 'fixed-bracket-rates',
+            'fixed_bracket_rates': [1,1,1,1,1,1,1],
+        }),
+    ],
+}
+
 ENV_FLAT_TAX = {
     'components': [
         ('Build', {'skill_dist': "pareto", 'payment_max_skill_multiplier': 3}),
@@ -73,7 +87,7 @@ ENV_FLAT_TAX = {
             'bracket_spacing': "us-federal",
             'period': 100,
             'tax_model': 'fixed-bracket-rates',
-            'fixed_bracket_rates': [21,21,21,21,21,21,21],
+            'fixed_bracket_rates': [0.21,0.21,0.21,0.21,0.21,0.21,0.21],
         }),
     ],
 }
