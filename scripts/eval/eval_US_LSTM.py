@@ -7,9 +7,10 @@ from tqdm import tqdm
 
 import sys
 sys.path.insert(1, '/home/lorenzo/Desktop/master_thesis/scripts')
-from aie.env_conf import ENV_NO_LABOUR
+
 from aie import plotting
 from aie.aie_env import AIEEnv
+from aie.env_conf import ENV_US
 from rl.conf import BASE_PPO_CONF
 from rl.models.tf.fcnet_lstm import RNNModel
 
@@ -21,11 +22,11 @@ trainer = ppo.PPOTrainer(config={
     "num_workers": 0,
 })
 
-ckpt_path = '/home/lorenzo/ray_results/LSTM_P0/checkpoint_7270/checkpoint-7270'
+ckpt_path = '/media/lorenzo/SAMSUNG/Tesi/NEW/ray_results/US_LSTM_broken/checkpoint_8256/checkpoint-8256'
 
 trainer.restore(str(ckpt_path))
 
-env = AIEEnv(ENV_NO_LABOUR, force_dense_logging=True)
+env = AIEEnv(ENV_US, force_dense_logging=True)
 obs = env.reset()
 hidden_states = {
     k: [

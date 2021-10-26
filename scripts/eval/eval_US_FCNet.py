@@ -9,6 +9,7 @@ sys.path.insert(1, '/home/lorenzo/Desktop/master_thesis/scripts')
 
 from aie import plotting
 from aie.aie_env import AIEEnv
+from aie.env_conf import ENV_US
 from rl.conf import BASE_PPO_CONF
 from rl.models.tf.fcnet import FCNet
 
@@ -27,7 +28,7 @@ ckpt_path = '/media/lorenzo/SAMSUNG/Tesi/NEW/ray_results/FCNet_P1_10M/checkpoint
 trainer.restore(str(ckpt_path))
 
 # %%
-env = AIEEnv({}, force_dense_logging=True)
+env = AIEEnv(ENV_US, force_dense_logging=True)
 obs = env.reset()
 
 for t in tqdm(range(1000)):

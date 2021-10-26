@@ -43,4 +43,4 @@ def run(load_dir=None):
 
 if __name__ == '__main__':
     ray.init() 
-    run("/home/lorenzo/ray_results/LSTM_48M/checkpoint_3785/checkpoint-3785") #need to add dir to the phase 1 results
+    run() #need to add dir to the phase 1 results
