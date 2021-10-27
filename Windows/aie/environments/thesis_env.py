@@ -611,9 +611,15 @@ class ThesisEnv(BaseEnvironment):
         metrics["labor/weighted_cost"] = self.energy_cost * self.energy_weight
         metrics["labor/warmup_integrator"] = int(self._auto_warmup_integrator)
 
-        for name in self.get_component('PeriodicBracketTax').get_metrics().keys():
-            metrics[
-                "tax/{}".format(name)
-            ] = self.get_component('PeriodicBracketTax').get_metrics()[name]
+        if 'ItalianPeriodicBracketTax' in self._components_dict:
+            for name in self.get_component('ItalianPeriodicBracketTax').get_metrics().keys():
+                metrics[
+                    "tax_ITA_brackets/{}".format(name)
+                ] = self.get_component('ItalianPeriodicBracketTax').get_metrics()[name]  
+        elif 'PeriodicBracketTax' in self._components_dict:
+            for name in self.get_component('PeriodicBracketTax').get_metrics().keys():
+                metrics[
+                    "tax_US_brackets/{}".format(name)
+                ] = self.get_component('PeriodicBracketTax').get_metrics()[name]
 
         return metrics

@@ -11,7 +11,7 @@ from rl.models.tf.fcnet_lstm import RNNModel
 
 def get_conf():
     return {
-        **get_base_ppo_conf(num_workers=4),
+        **get_base_ppo_conf(num_workers=2),
         "multiagent": {
             "policies_to_train": ["learned"],
             "policies": {

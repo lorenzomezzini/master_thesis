@@ -49,9 +49,7 @@ def get_base_ppo_conf_akira(num_workers: int):
     return {
         **BASE_PPO_CONF,
 
-        "num_gpus": 1,
         "num_workers": num_workers,
-        "num_gpus_per_worker": 1 / num_workers,
         'num_envs_per_worker': 60 // num_workers,
 
         "rollout_fragment_length": 200,
