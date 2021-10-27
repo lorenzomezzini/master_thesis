@@ -1,7 +1,7 @@
 import numpy as np
 
 ENV_CONF_DEFAULT = {
-    'scenario_name': 'layout_from_file/simple_wood_and_stone',
+    'scenario_name': 'thesisEnv/simple_wood_and_stone',
     'components': [
         ('Build', {'skill_dist': "pareto", 'payment_max_skill_multiplier': 3}),
         ('ContinuousDoubleAuction', {'max_num_orders': 5}),
