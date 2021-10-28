@@ -40,6 +40,8 @@ for t in tqdm(range(1000)):
         for k, v in obs.items()
     }
     obs, reward, done, info = env.step(results)
+    plotting.plot_env_state(env.env)
+
 
 # %%
 plotting.breakdown(env.env.previous_episode_dense_log)
