@@ -8,14 +8,14 @@ from ray.rllib.models import ModelCatalog
 
 from aie.aie_env import OBS_SPACE_AGENT, ACT_SPACE_AGENT
 from aie.env_conf import ENV_NO_LABOUR
-from rl.conf import get_base_ppo_conf
+from rl.conf import get_base_ppo_conf_LSTM
 from rl.models.tf.fcnet_lstm import RNNModel
 
 
 def get_conf():
     return {
         
-        **get_base_ppo_conf(num_workers=2),
+        **get_base_ppo_conf_LSTM(num_workers=2),
         'env_config': ENV_NO_LABOUR,
         "multiagent": {
             "policies_to_train": ["learned"],

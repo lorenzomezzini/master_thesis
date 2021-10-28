@@ -6,7 +6,7 @@ from ray.rllib.models import ModelCatalog
 
 from aie.env_conf import ENV_US
 
-from rl.conf import get_base_ppo_conf
+from rl.conf import get_base_ppo_conf_FCNet
 from rl.models.tf.fcnet import FCNet
 
 
@@ -14,7 +14,7 @@ def get_conf():
     lr = 1e-4
 
     return {
-        **get_base_ppo_conf(num_workers=3),
+        **get_base_ppo_conf_FCNet(num_workers=3),
 
         "lr_schedule": [
             [0, lr],

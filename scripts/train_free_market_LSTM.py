@@ -5,13 +5,13 @@ from ray.rllib.agents import ppo
 from ray.rllib.models import ModelCatalog
 
 from aie.aie_env import OBS_SPACE_AGENT, ACT_SPACE_AGENT
-from rl.conf import get_base_ppo_conf
+from rl.conf import get_base_ppo_conf_LSTM
 from rl.models.tf.fcnet_lstm import RNNModel
 
 
 def get_conf():
     return {
-        **get_base_ppo_conf(num_workers=8),
+        **get_base_pget_base_ppo_conf_LSTMpo_conf(num_workers=8),
         "multiagent": {
             "policies_to_train": ["learned"],
             "policies": {

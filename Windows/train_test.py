@@ -1,5 +1,5 @@
 import time
-from rl.conf import get_base_ppo_conf_akira
+from rl.conf import get_base_ppo_conf_FCNet
 
 import ray
 from ray.rllib.agents import ppo
@@ -12,7 +12,7 @@ from rl.models.tf.fcnet import FCNet
 
 def get_conf():
     return {
-        **get_base_ppo_conf_akira(num_workers=2),
+        **get_base_ppo_conf_FCNet(num_workers=2),
         'env_config': ENV_PHASE_ONE,
     }
 
