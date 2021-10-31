@@ -17,9 +17,8 @@ def get_conf():
         **get_base_ppo_conf_FCNet(num_workers=3),
 
         "lr_schedule": [
-            [0, lr],
-            [50_000_000, lr],
-            [100_000_000, 0],
+            [35_000_000, lr],
+            [50_000_000, 1e-6],
         ],
         'env_config': ENV_US,
     }
@@ -43,4 +42,4 @@ def run(load_dir=None):
 
 if __name__ == '__main__':
     ray.init() 
-    run() #need to add dir to the phase 1 results
+    run('/home/lorenzo/Desktop/master_thesis/ray_results/FCNet_P1/checkpoint_3020/checkpoint-3020') #need to add dir to the phase 1 results
