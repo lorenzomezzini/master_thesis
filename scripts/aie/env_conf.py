@@ -87,7 +87,7 @@ ENV_FLAT_TAX = {
             'bracket_spacing': "us-federal",
             'period': 100,
             'tax_model': 'fixed-bracket-rates',
-            'fixed_bracket_rates': [0.21,0.21,0.21,0.21,0.21,0.21,0.21],
+            'fixed_bracket_rates': [0.15,0.15,0.15,0.15,0.15,0.15,0.15],
         }),
     ],
 }
