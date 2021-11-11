@@ -11,7 +11,13 @@
 \usepackage[parfill]{parskip}
 \usepackage{listings} 
 \usepackage{hyperref}
+\usepackage{marvosym}
 \usepackage{csquotes}
+\usepackage{subfig}
+\usepackage{adjustbox}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 
 % Biblatex - bibliograpy 
 \usepackage{biblatex}
@@ -24,7 +30,7 @@
 \usepackage[margin=1cm]{caption}
 
 % some page formating
-\oddsidemargin=30pt \evensidemargin=20pt
+\usepackage[textwidth=400pt]{geometry}
 \numberwithin{equation}{section} 
 \linespread{1.3} 
 
@@ -38,7 +44,62 @@
 
 % Tikz - Graph and diagrams
 \usepackage{tikz}
-\usetikzlibrary{arrows}
+\usetikzlibrary{arrows,positioning} 
+\tikzset{
+    %Define standard arrow tip
+    >=stealth',
+    %Define style for boxes
+    punkt/.style={
+           rectangle,
+           rounded corners,
+           draw=black, very thick,
+           text width=6.5em,
+           minimum height=2em,
+           text centered},
+    % Define arrow style
+    pil/.style={
+           ->,
+           thick,
+           shorten <=2pt,
+           shorten >=2pt,}
+}
+
+
+% Json repr in listing
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+    basicstyle=\tiny\ttfamily,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+    literate=
+     *{0}{{{\color{numb}0}}}{1}
+      {1}{{{\color{numb}1}}}{1}
+      {2}{{{\color{numb}2}}}{1}
+      {3}{{{\color{numb}3}}}{1}
+      {4}{{{\color{numb}4}}}{1}
+      {5}{{{\color{numb}5}}}{1}
+      {6}{{{\color{numb}6}}}{1}
+      {7}{{{\color{numb}7}}}{1}
+      {8}{{{\color{numb}8}}}{1}
+      {9}{{{\color{numb}9}}}{1}
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}
+
 
 % ragged2e - Justifying text
 \usepackage{ragged2e}
@@ -46,8 +107,10 @@
 
 
 \begin{document} 
-\input{frontespizio_new.tex}
+\input{Chapters/frontespizio_new.tex}
 
+
+\begin{comment}
 
 %------------------------------------------------------------------------------------
 % TITLE PAGE
@@ -65,7 +128,8 @@ anche nulla \ldots
 %\clearpage{\pagestyle{empty}\cleardoublepage}%non numera l'ultima pagina sinistra
 \end{titlepage}
 %------------------------------------------------------------------------------------
-
+       
+\end{comment}
 
 
 
@@ -77,15 +141,19 @@ anche nulla \ldots
 \addcontentsline{toc}{chapter}{Introduction}
 
 
-hi this is my intro
 
 
 \clearpage{\pagestyle{empty}\cleardoublepage}
 \tableofcontents      
 \clearpage{\pagestyle{empty}\cleardoublepage}
-\listoffigures                         
-\clearpage{\pagestyle{empty}\cleardoublepage}
+
+\listoffigures   
+\begingroup
+\let\clearpage\relax
 \listoftables  
+\listofalgorithms
+\endgroup
+
 \clearpage{\pagestyle{empty}\cleardoublepage}
 
 %------------------------------------------------------------------------------------
@@ -97,7 +165,7 @@ hi this is my intro
 %------------------------------------------------------------------------------------
 \chapter{What is Foundation}
 \pagenumbering{arabic}
-\input{Foundation.tex}
+\input{Chapters/Foundation.tex}
 %------------------------------------------------------------------------------------
 
 
@@ -106,7 +174,7 @@ hi this is my intro
 % CHAPTER 2
 %------------------------------------------------------------------------------------
 \chapter{Reinforcement Learning}
-\input{Reinforcment_learning.tex}
+\input{Chapters/Reinforcment_learning.tex} 
 %------------------------------------------------------------------------------------
 
 
@@ -115,9 +183,19 @@ hi this is my intro
 %------------------------------------------------------------------------------------
 % CHAPTER 3
 %------------------------------------------------------------------------------------
-\chapter{Optimal taxation}
-\input{optimal_taxation.tex}
+%\chapter{Optimal taxation}
+%\input{Chapters/optimal_taxation.tex}
 %------------------------------------------------------------------------------------
+
+
+
+%------------------------------------------------------------------------------------
+% CHAPTER 4 
+%------------------------------------------------------------------------------------
+\chapter{Experiments}
+\input{Chapters/experiments.tex}
+%------------------------------------------------------------------------------------
+
 
 
 
@@ -126,9 +204,10 @@ hi this is my intro
 \renewcommand{\chaptermark}[1]{\markright{\thechapter \ #1}{}}
 \lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
 \appendix   
-\chapter{Tabelle e cose}  
-\input{appendices.tex}
-\rhead[\fancyplain{}{\bfseries \thechapter \:Tabelle e cose}]
+\addcontentsline{toc}{chapter}{Appendix}
+\chapter*{Appendix}  
+\input{Chapters/appendices.tex}
+\rhead[\fancyplain{}{\bfseries \thechapter \:Appendix}]
 {\fancyplain{}{\bfseries\thepage}}
 
 
