@@ -14,7 +14,7 @@ def get_conf():
     lr = 1e-4
 
     return {
-        **get_base_ppo_conf(num_workers=2),
+        **get_base_ppo_conf(num_workers=6),
 
         "lr_schedule": [
             [35_000_000, lr],
@@ -42,4 +42,4 @@ def run(load_dir=None):
 
 if __name__ == '__main__':
     ray.init() 
-    run('/home/lorenzo/Desktop/master_thesis/ray_results/FCNet_P1/checkpoint_3020/checkpoint-3020') #need to add dir to the phase 1 results
+    run('/home/lorenzo/ray_results/Comm_P2/checkpoint_10271/checkpoint-10271') #need to add dir to the phase 1 results
