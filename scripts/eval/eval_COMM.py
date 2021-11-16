@@ -23,7 +23,7 @@ trainer = ppo.PPOTrainer(config={
     "num_workers": 0,
 })
 
-ckpt_path = '/home/lorenzo/Desktop/master_thesis/ray_results/COMM/checkpoint_10270/checkpoint-10270'
+ckpt_path = '/media/lorenzo/SAMSUNG/Tesi/final/ray_results/COMM/checkpoint_15432/checkpoint-15432'
 
 trainer.restore(str(ckpt_path))
 

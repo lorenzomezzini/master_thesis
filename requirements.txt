@@ -7,3 +7,4 @@ tqdm==4.46.1
 pandas==1.2.2
 numpy==1.18.1
 ray[rllib]==1.2.0
+flatten-dict==0.4.2
