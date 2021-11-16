@@ -20,7 +20,7 @@
 \usepackage{algpseudocode}
 
 % Biblatex - bibliograpy 
-\usepackage{biblatex}
+\usepackage[sorting=none]{biblatex}
 \addbibresource{bibliography.bib}
 
 % appendix 
@@ -107,8 +107,9 @@
 
 
 \begin{document} 
-\input{Chapters/frontespizio_new.tex}
 
+
+\input{Chapters/frontespizio_new.tex}
 
 \begin{comment}
 
@@ -137,26 +138,32 @@ anche nulla \ldots
 % INTRO - TABLE OF CONTENTS
 %------------------------------------------------------------------------------------
 \pagenumbering{roman}                  
-\chapter*{Introduction}             
-\addcontentsline{toc}{chapter}{Introduction}
+\chapter*{Abstract}             
+\addcontentsline{toc}{chapter}{Abstract}
 
-
-
+The work presents a set of economical simulations through AI-driven agents that maximises their utility. This is done using a python package called Foundation and
 
 \clearpage{\pagestyle{empty}\cleardoublepage}
 \tableofcontents      
 \clearpage{\pagestyle{empty}\cleardoublepage}
 
-\listoffigures   
 \begingroup
 \let\clearpage\relax
+\listoffigures   
 \listoftables  
-\listofalgorithms
 \endgroup
 
 \clearpage{\pagestyle{empty}\cleardoublepage}
 
+\pagenumbering{arabic}
 %------------------------------------------------------------------------------------
+\chapter*{Introduction}             
+\addcontentsline{toc}{chapter}{Introduction}
+
+One of the challenges in macroeconomic theory is to transpose the theory to the real world. In particular the process of designing a policy and implementing it. This is because the analytical solutions are bounded to certain a level of complexity. The more complex and similar to reality the problem gets the harder it gets to solve it analytically. In addition agents are heterogeneous and thus each one is acting differently according to his skill and initial state. 
+
+
+In this thesis I am going to present a partial reproduction with expansion of the paper \textit{The AI Economist: Optimal Economic Policy Design via Two-level Deep Reinforcement Learning}\cite{zheng2021ai}. With the scope of presenting an AI-driven economical simulation, where is possible to investigate high complexity setup that would be almost impossible to study analytically. It will be shown that AI-driven agents are able to come up with emerging behaviors and specialization in order to maximize their own utility. Afterward multiple kind of taxation will be introduced in the simulations as a discriminant factor, and we will compare the results on total economical productivity and on coin equality among agents.
 
 
 
@@ -164,7 +171,6 @@ anche nulla \ldots
 % CHAPTER 1
 %------------------------------------------------------------------------------------
 \chapter{What is Foundation}
-\pagenumbering{arabic}
 \input{Chapters/Foundation.tex}
 %------------------------------------------------------------------------------------
 
@@ -196,6 +202,15 @@ anche nulla \ldots
 \input{Chapters/experiments.tex}
 %------------------------------------------------------------------------------------
 
+%------------------------------------------------------------------------------------
+% CHAPTER 5
+%------------------------------------------------------------------------------------
+\addcontentsline{toc}{chapter}{Conclusions}
+\chapter*{Conclusions}
+\input{Chapters/conclusions}
+%------------------------------------------------------------------------------------
+
+
 
 
 
@@ -204,14 +219,20 @@ anche nulla \ldots
 \renewcommand{\chaptermark}[1]{\markright{\thechapter \ #1}{}}
 \lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
 \appendix   
-\addcontentsline{toc}{chapter}{Appendix}
-\chapter*{Appendix}  
+%\addcontentsline{toc}{chapter}{Appendix}
+\chapter{Tables}  
 \input{Chapters/appendices.tex}
-\rhead[\fancyplain{}{\bfseries \thechapter \:Appendix}]
+\rhead[\fancyplain{}{\bfseries \thechapter \:Tables}]
 {\fancyplain{}{\bfseries\thepage}}
 
 
-\printbibliography
+\nocite{ai-economist}
+\nocite{aie_git}
+\nocite{akira_git}
+\nocite{akira_medium}
+\nocite{my_git}
 
-
+\printbibliography[type=article]
+\printbibliography[type=online, heading=subbibliography, title=Sitography]
+\printbibliography[type=online2, heading=subbibliography, title=Source Code]
 \end{document}

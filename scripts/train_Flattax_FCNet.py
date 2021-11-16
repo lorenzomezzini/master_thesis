@@ -4,7 +4,7 @@ import ray
 from ray.rllib.agents import ppo
 from ray.rllib.models import ModelCatalog
 
-from aie.env_conf import ENV_COMMUNISM
+from aie.env_conf import ENV_FLAT_TAX
 
 from rl.conf import get_base_ppo_conf
 from rl.models.tf.fcnet import FCNet
@@ -20,7 +20,7 @@ def get_conf():
             [35_000_000, lr],
             [50_000_000, 1e-6],
         ],
-        'env_config': ENV_COMMUNISM,
+        'env_config': ENV_FLAT_TAX,
     }
 
 
@@ -42,4 +42,4 @@ def run(load_dir=None):
 
 if __name__ == '__main__':
     ray.init() 
-    run('/home/lorenzo/ray_results/Comm_P3/checkpoint_13000/checkpoint-13000') #need to add dir to the phase 1 results
+    run('/home/lorenzo/Desktop/master_thesis/ray_results/FCNet_P1/checkpoint_3020/checkpoint-3020')

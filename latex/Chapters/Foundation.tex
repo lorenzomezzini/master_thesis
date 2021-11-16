@@ -18,7 +18,7 @@ As aforementioned the map is a 25x25 grid where are present some entities. Some 
 \end{itemize}
 
 Water is a simple world block that has no use other than avoiding agents passing through. We can see from Figure \ref{img:map_0} that the water is used to divide the world into 4 macro-areas, each one with different resources. 
-A House is a block that is not present at the beginning of the simulation, but it can be built by agents in an empty block, agents can walk through houses.
+A House is a block that is not present at the beginning of the simulation, but it can be built by agents in an empty block, only the owner of the house can walk through it.
 
 Source blocks are two entities that spawn stochastically resources, namely wood, and stone, as we can see from Figure \ref{img:map_0} in the four areas divided by the water we have a zone with both wood and stone source block, two other areas with just one kind of source block and one that has no resources at all. 
 
@@ -86,7 +86,7 @@ Agents in the simulation earn coins when building houses or trading goods, the u
 u_i(x_{i,t}, l_{i,t}) = crra(x_{i,t}^c) - \vartheta_k l_{i,t}\,, \quad crra(z) = \frac{z^{1- \eta}-1}{1-\eta}\,,\,\, \eta > 0
 \end{equation}
 
-Where \( l_{i,t} \) is the cumulative labor associated with the actions taken up to time \( t \), \( x_{i,t}^c \) is the coin endowment and \( \vartheta \) is a function utilized for labor annihilation with the following specification \( \vartheta_k = 1- exp\left(- \frac{\textit{episode completitions}}{\textit{energy warm-up constant (k)}}\right)\). This variable will play an important role during the two-step optimization process purposed in the original paper. In particular, during phase 1 of training, the labor cost is annihilated to help agents avoid sub-optimal behaviors. And \( \eta \) determines the degree of non-linearity of the utility. This utility function is assumed to be the same for all the agents.
+Where \( l_{i,t} \) is the cumulative labor associated with the actions taken up to time \( t \), \( x_{i,t}^c \) is the coin endowment and \( \vartheta \) is a function utilized for labor annihilation with the following specification \( \vartheta_k = 1- exp\left(- \frac{\textit{number of time mean reward }>\, 0}{\textit{energy warm-up constant (k)}}\right)\). This variable will play an important role during the two-step optimization process purposed in the original paper. In particular, during phase 1 of training, the labor cost is annihilated to help agents avoid sub-optimal behaviors. And \( \eta \) determines the degree of non-linearity of the utility. This utility function is assumed to be the same for all the agents.
 
 The maximization problem is solved for a rational behaving agent by optimizing the total discounted utility over time,
 
@@ -106,14 +106,13 @@ The policymaker, or social planner, differs deeply from the previous agents. Bei
 
 The only observation needed is the number of coins that each agent possesses. With this value is possible to place an agent within a tax bracket and tax it accordingly to some predefined values. 
 
-There will be five simulations in this thesis: 
+There will be four simulations in this thesis: 
 
 \begin{itemize}
     \item US taxation
     \item Italian taxation
     \item Free market
     \item Communism
-    \item Flat tax
 \end{itemize}
 
 and the policymaker will act accordingly to these taxation systems. The US taxation is based on the 2018 US federal tax and brackets, and the Italian is based on the 2020 INPS tax and brackets. The brackets are created in such a way that 1 coin in the simulation is equal to 1000 \$ or \EURcr 863.93  according to the tax system.  
