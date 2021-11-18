@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper,openright,twoside]{report}
+\documentclass[12pt,a4paper,openright]{report}
 
 \usepackage[english]{babel}
 \usepackage{indentfirst}
@@ -15,6 +15,7 @@
 \usepackage{csquotes}
 \usepackage{subfig}
 \usepackage{adjustbox}
+\usepackage{movie15}
 
 \usepackage{algorithm}
 \usepackage{algpseudocode}
@@ -141,7 +142,7 @@ anche nulla \ldots
 \chapter*{Abstract}             
 \addcontentsline{toc}{chapter}{Abstract}
 
-The work presents a set of economical simulations through AI-driven agents that maximises their utility. This is done using a python package called Foundation and
+Throughout the thesis, it will be presented a partial paper reproduction, followed by an extension. This work presents a set of economical simulations with four heterogeneous AI-driven agents. This is done by the use of a python package called ai-economist\cite{aie-pypi} and techniques from reinforcement learning. The training of the agents is going to be divided into two steps, a first phase where the agents get accustomed to the environment, and a second one where different kinds of taxation will be imposed. The main focus will be the relationship between total production and equality. Quite reasonably, we found that there is a negative impact from taxes on productivity, and a positive impact on equality.
 
 \clearpage{\pagestyle{empty}\cleardoublepage}
 \tableofcontents      
@@ -151,6 +152,7 @@ The work presents a set of economical simulations through AI-driven agents that 
 \let\clearpage\relax
 \listoffigures   
 \listoftables  
+\listofalgorithms
 \endgroup
 
 \clearpage{\pagestyle{empty}\cleardoublepage}
@@ -160,12 +162,16 @@ The work presents a set of economical simulations through AI-driven agents that 
 \chapter*{Introduction}             
 \addcontentsline{toc}{chapter}{Introduction}
 
-One of the challenges in macroeconomic theory is to transpose the theory to the real world. In particular the process of designing a policy and implementing it. This is because the analytical solutions are bounded to certain a level of complexity. The more complex and similar to reality the problem gets the harder it gets to solve it analytically. In addition agents are heterogeneous and thus each one is acting differently according to his skill and initial state. 
+One of the challenges in macroeconomic theory is to transpose the theory to the real world. In particular the process of designing a policy and implementing it. This is because the analytical solutions are bound to certain a level of complexity. The more complex and similar to reality the problem gets the harder it gets to solve it analytically. In addition agents in the real world are heterogeneous and thus each one is acting differently according to his skill and initial conditions. 
+
+In this thesis, I am going to present a partial reproduction with an expansion of the paper \textit{The AI Economist: Optimal Economic Policy Design via Two-level Deep Reinforcement Learning}\cite{zheng2021ai}. With the scope of presenting an AI-driven economical simulation, where is possible to investigate a high complexity setup that would be almost impossible to study analytically. This simulation requires the agents to behave in a complex way. They are asked to maximize their utility in a simulated economy where they can gather goods, use them or interact with other agents in a bid/ask market. To achieve this goal we will use a technique called proximal policy optimization. This is an optimization algorithm that will train a fully connected neural network. It will be shown that AI-driven agents can find a sub-optimal behavior, and come up with emerging behaviors and specialization to maximize their utility.
+
+Afterward, multiple kinds of taxation will be introduced in the simulations as a discriminant factor, and we will compare the results on total economical productivity and coin equality among agents. This requires a second training that will get the agents accustomed to the new setup. 
 
 
-In this thesis I am going to present a partial reproduction with expansion of the paper \textit{The AI Economist: Optimal Economic Policy Design via Two-level Deep Reinforcement Learning}\cite{zheng2021ai}. With the scope of presenting an AI-driven economical simulation, where is possible to investigate high complexity setup that would be almost impossible to study analytically. It will be shown that AI-driven agents are able to come up with emerging behaviors and specialization in order to maximize their own utility. Afterward multiple kind of taxation will be introduced in the simulations as a discriminant factor, and we will compare the results on total economical productivity and on coin equality among agents.
+The paper that is used as a reference \cite{zheng2021ai}, addresses the question of whether is it possible to generate optimal policies through the use of reinforcement learning. To do it, they first built a gather-and-trade game, publicly available on GitHub, as a framework for the simulations. Afterward, they trained the agents to behave optimally within this simulation. Once they had this setup they created four simulations: one that recreates the US taxes, the free market scenario, the Saez taxation, and another RL driven policymaker that optimize the production of equality and productivity. They were able to show that the RL agent produced an economy the 16\% more efficient compared with the analytical solution purposed by Saez\cite{saez2001using}, in the variable of interest. The entirety of the code from this second part is not available since their paper is still in peer review.
 
-
+Thus, using third-party code available on Github, I will try to reproduce the first step of optimization, where the agents maximise their utility. Then I will introduce four taxations as well, however, two of these will be the US and the free market, and the other two will be the Italian system and communism. Hence, the main questions that this thesis address are: Is reinforcement learning a viable media to construct an economical accurate simulation? Can we conclude the impact of the different taxation systems on the overall economy?
 
 %------------------------------------------------------------------------------------
 % CHAPTER 1
@@ -220,7 +226,7 @@ In this thesis I am going to present a partial reproduction with expansion of th
 \lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries\rightmark}}
 \appendix   
 %\addcontentsline{toc}{chapter}{Appendix}
-\chapter{Tables}  
+\chapter{Tables, Algorithms and Graphs}  
 \input{Chapters/appendices.tex}
 \rhead[\fancyplain{}{\bfseries \thechapter \:Tables}]
 {\fancyplain{}{\bfseries\thepage}}
